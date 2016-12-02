@@ -1,0 +1,29 @@
+{
+  "name": "amorph-buffer",
+  "version": "0.0.0",
+  "description": "Amorph converters for buffer, array, hex, utf8, ascii",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SafeMarket/amorph-buffer.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SafeMarket/amorph-buffer/issues"
+  },
+  "homepage": "https://github.com/SafeMarket/amorph-buffer#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "nobject": "0.0.3"
+  }
+}
