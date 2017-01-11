@@ -37,12 +37,4 @@ converters.set(['utf16le', 'buffer'], (utf16le) => {
   return Buffer.from(utf16le, 'utf16le')
 })
 
-converters.set(['utf16le', 'ucs2'], (utf16le) => {
-  return utf16le
-})
-
-converters.set(['ucs2', 'utf16le'], (ucs2) => {
-  return ucs2
-})
-
 module.exports = converters

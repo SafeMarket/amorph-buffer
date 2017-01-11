@@ -80,20 +80,6 @@ describe('converters', () => {
     })
   })
 
-  describe('utf16le-ucs2', () => {
-    it('test 1', () => {
-      const ucs2 = converters.get(['utf16le', 'ucs2'])('🐑🐍')
-      ucs2.should.equal('🐑🐍')
-    })
-  })
-
-  describe('ucs2-utf16le', () => {
-    it('test 1', () => {
-      const utf16le = converters.get(['ucs2', 'utf16le'])('🐑🐍')
-      utf16le.should.equal('🐑🐍')
-    })
-  })
-
   // describe('uint8array-hex', () => {
   //   it('test 1', () => {
   //     const hex = hexConverters.get(['uint8Array', 'hex'])(new Uint8Array([0, 1, 2, 255]))
