@@ -1,6 +1,6 @@
 {
   "name": "amorph-buffer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Amorph converters for buffer, array, hex, utf8, ascii",
   "main": "index.js",
   "directories": {
