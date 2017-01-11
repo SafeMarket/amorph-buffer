@@ -29,4 +29,20 @@ converters.set(['utf8', 'buffer'], (utf8) => {
   return Buffer.from(utf8, 'utf8')
 })
 
+converters.set(['buffer', 'utf16le'], (buffer) => {
+  return buffer.toString('utf16le')
+})
+
+converters.set(['utf16le', 'buffer'], (utf16le) => {
+  return Buffer.from(utf16le, 'utf16le')
+})
+
+converters.set(['utf16le', 'ucs2'], (utf16le) => {
+  return utf16le
+})
+
+converters.set(['ucs2', 'utf16le'], (ucs2) => {
+  return ucs2
+})
+
 module.exports = converters

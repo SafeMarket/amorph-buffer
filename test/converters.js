@@ -65,6 +65,35 @@ describe('converters', () => {
     })
   })
 
+  describe('buffer-utf16le', () => {
+    it('test 1', () => {
+      const buffer = Buffer.from([0x3d, 0xd8, 0x11, 0xdc, 0x3d, 0xd8, 0x0d, 0xdc])
+      const ascii = converters.get(['buffer', 'utf16le'])(buffer)
+      ascii.should.equal('🐑🐍')
+    })
+  })
+
+  describe('utf16le-buffer', () => {
+    it('test 1', () => {
+      const buffer = converters.get(['utf16le', 'buffer'])('🐑🐍')
+      buffer.toJSON().data.should.deep.equal([0x3d, 0xd8, 0x11, 0xdc, 0x3d, 0xd8, 0x0d, 0xdc])
+    })
+  })
+
+  describe('utf16le-ucs2', () => {
+    it('test 1', () => {
+      const ucs2 = converters.get(['utf16le', 'ucs2'])('🐑🐍')
+      ucs2.should.equal('🐑🐍')
+    })
+  })
+
+  describe('ucs2-utf16le', () => {
+    it('test 1', () => {
+      const utf16le = converters.get(['ucs2', 'utf16le'])('🐑🐍')
+      utf16le.should.equal('🐑🐍')
+    })
+  })
+
   // describe('uint8array-hex', () => {
   //   it('test 1', () => {
   //     const hex = hexConverters.get(['uint8Array', 'hex'])(new Uint8Array([0, 1, 2, 255]))
