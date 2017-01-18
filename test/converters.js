@@ -1,5 +1,6 @@
 const chai = require('chai')
-const converters = require('../')
+const plugin = require('../')
+const converters = plugin.converters
 const Nobject = require('nobject')
 const expect = chai.expect
 
@@ -80,33 +81,48 @@ describe('converters', () => {
     })
   })
 
-  // describe('uint8array-hex', () => {
-  //   it('test 1', () => {
-  //     const hex = hexConverters.get(['uint8Array', 'hex'])(new Uint8Array([0, 1, 2, 255]))
-  //     expect(hex).to.be.a.string
-  //     expect(hex).to.equal('000102ff')
-  //   })
+})
 
-  //   it('test 2', () => {
-  //     const hex = hexConverters.get(['uint8Array', 'hex'])(new Uint8Array([0, 1, 2, 15]))
-  //     expect(hex).to.be.a.string
-  //     expect(hex).to.equal('0001020f')
-  //   })
-  // })
+describe('equivalenceTests', () => {
+  describe('array', () => {
+    const test = plugin.equivalenceTests.array
+    it('[] should equal []', () => {
+      test([], []).should.equal(true)
+    })
 
-  // describe('hex-hex.prefixed', () => {
-  //   it('test 1', () => {
-  //     const prefixedHex = hexConverters.get(['hex', 'hex.prefixed'])('00ff')
-  //     expect(prefixedHex).to.be.a.string
-  //     expect(prefixedHex).to.equal('0x00ff')
-  //   })
+    it('[1] should NOT equal []', () => {
+      test([1], []).should.equal(false)
+    })
 
-  //   it('test 2', () => {
-  //     const hex = hexConverters.get(['hex.prefixed', 'hex'])('0x00ff')
-  //     expect(hex).to.be.a.string
-  //     expect(hex).to.equal('00ff')
-  //   })
-  // })
+    it('[] should NOT equal [1]', () => {
+      test([], [1]).should.equal(false)
+    })
 
+    it('[1] should equal [1]', () => {
+      test([1], [1]).should.equal(true)
+    })
+  })
 
+  describe('buffer', () => {
+    const test = plugin.equivalenceTests.buffer
+    it('new Buffer([]) should equal new Buffer([])', () => {
+      test(new Buffer([]), new Buffer([])).should.equal(true)
+    })
+
+    it('new Buffer([1]) should NOT equal new Buffer([])', () => {
+      test(new Buffer([1]), new Buffer([])).should.equal(false)
+    })
+
+    it('new Buffer([]) should NOT equal new Buffer([1])', () => {
+      test(new Buffer([]), new Buffer([1])).should.equal(false)
+    })
+
+    it('new Buffer([1]) should equal new Buffer([1])', () => {
+      test(new Buffer([1]), new Buffer([1])).should.equal(true)
+    })
+
+    it('new Buffer(0x010203) should equal new Buffer([1, 2, 3])', () => {
+      test(Buffer.from('010203', 'hex'), new Buffer([1, 2, 3])).should.equal(true)
+    })
+  })
 })

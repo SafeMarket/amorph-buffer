@@ -1,5 +1,6 @@
 const Nobject = require('nobject')
 const converters = new Nobject
+const arrayEquals = require('array-equal')
 
 converters.set(['array', 'buffer'], (array) => {
   return Buffer.from(array)
@@ -37,4 +38,13 @@ converters.set(['utf16le', 'buffer'], (utf16le) => {
   return Buffer.from(utf16le, 'utf16le')
 })
 
-module.exports = converters
+module.exports = {
+  pluginVersion: 1,
+  converters: converters,
+  equivalenceTests: {
+    array: arrayEquals,
+    buffer: (a, b) => {
+      return Buffer.compare(a, b) === 0
+    }
+  }
+}
