@@ -9,6 +9,8 @@ chai.should()
 describe('converters', () => {
 
   const buffer = new Buffer([1, 2, 3])
+  const array = [4, 5, 6]
+  const uint8Array = new Uint8Array([7, 8, 9])
 
   it('should be instance of Nobject', () => {
     converters.should.be.instanceOf(Nobject)
@@ -16,14 +18,30 @@ describe('converters', () => {
 
   describe('array-buffer', () => {
     it('test 1', () => {
-      const buffer = converters.get(['array', 'buffer'])([1, 2, 3])
-      buffer.toJSON().data.should.deep.equal([1, 2, 3])
+      const buffer = converters.get(['array', 'buffer'])(array)
+      buffer.should.be.instanceOf(Buffer)
+      buffer.toJSON().data.should.deep.equal([4, 5, 6])
+    })
+  })
+
+  describe('buffer-uint8Array', () => {
+    it('test 1', () => {
+      const uint8Array = converters.get(['buffer', 'uint8Array'])(buffer)
+      uint8Array.should.be.instanceOf(Uint8Array)
+      uint8Array.should.deep.equal({ '0': 1, '1': 2, '2': 3 })
+    })
+  })
+
+  describe('uint8Array-array', () => {
+    it('test 1', () => {
+      const array = converters.get(['uint8Array', 'array'])(uint8Array)
+      array.should.be.instanceOf(Array)
+      array.should.deep.equal([7, 8, 9])
     })
   })
 
   describe('buffer-hex', () => {
     it('test 1', () => {
-      const buffer = Buffer.from('010203', 'hex')
       const hex = converters.get(['buffer', 'hex'])(buffer)
       hex.should.equal('010203')
     })

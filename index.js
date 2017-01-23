@@ -6,6 +6,14 @@ converters.set(['array', 'buffer'], (array) => {
   return Buffer.from(array)
 })
 
+converters.set(['buffer', 'uint8Array'], (buffer) => {
+  return new Uint8Array(buffer)
+})
+
+converters.set(['uint8Array', 'array'], (uint8Array) => {
+  return Array.from(uint8Array)
+})
+
 converters.set(['buffer', 'hex'], (buffer) => {
   return buffer.toString('hex')
 })
