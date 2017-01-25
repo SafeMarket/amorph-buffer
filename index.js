@@ -38,6 +38,14 @@ converters.set(['utf8', 'buffer'], (utf8) => {
   return Buffer.from(utf8, 'utf8')
 })
 
+converters.set(['buffer', 'base64'], (buffer) => {
+  return buffer.toString('base64')
+})
+
+converters.set(['base64', 'buffer'], (base64) => {
+  return Buffer.from(base64, 'base64')
+})
+
 converters.set(['buffer', 'utf16le'], (buffer) => {
   return buffer.toString('utf16le')
 })

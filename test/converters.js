@@ -84,6 +84,21 @@ describe('converters', () => {
     })
   })
 
+  describe('buffer-base64', () => {
+    it('test 1', () => {
+      const buffer = Buffer.from([0x74, 0x65, 0x73, 0x74])
+      const base64 = converters.get(['buffer', 'base64'])(buffer)
+      base64.should.equal('dGVzdA==')
+    })
+  })
+
+  describe('base64-buffer', () => {
+    it('test 1', () => {
+      const buffer = converters.get(['base64', 'buffer'])('dGVzdA==', 'base64')
+      buffer.toJSON().data.should.deep.equal([0x74, 0x65, 0x73, 0x74])
+    })
+  })
+
   describe('buffer-utf16le', () => {
     it('test 1', () => {
       const buffer = Buffer.from([0x3d, 0xd8, 0x11, 0xdc, 0x3d, 0xd8, 0x0d, 0xdc])
