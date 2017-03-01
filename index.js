@@ -18,7 +18,8 @@ converters.set(['buffer', 'hex'], (buffer) => {
   return buffer.toString('hex')
 })
 
-converters.set(['hex', 'buffer'], (hex) => {
+converters.set(['hex', 'buffer'], (_hex) => {
+  const hex = _hex.length % 2 === 0 ? _hex : _hex.slice(0, -1) + '0' + _hex.slice(-1)
   return Buffer.from(hex, 'hex')
 })
 

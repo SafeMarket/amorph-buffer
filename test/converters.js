@@ -52,6 +52,14 @@ describe('converters', () => {
       const buffer = converters.get(['hex', 'buffer'])('010203')
       buffer.toJSON().data.should.deep.equal([1, 2, 3])
     })
+    it('test 2', () => {
+      const buffer = converters.get(['hex', 'buffer'])('aabBCCDd')
+      buffer.toJSON().data.should.deep.equal([170, 187, 204, 221])
+    })
+    it('test 3', () => {
+      const buffer = converters.get(['hex', 'buffer'])('01023')
+      buffer.toJSON().data.should.deep.equal([1, 2, 3])
+    })
   })
 
   describe('buffer-ascii', () => {
