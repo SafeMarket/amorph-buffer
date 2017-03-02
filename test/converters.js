@@ -61,7 +61,7 @@ describe('converters', () => {
       buffer.toJSON().data.should.deep.equal([170, 187, 204, 221])
     })
     it('test 3', () => {
-      const buffer = converters.get(['hex', 'buffer'])('01023')
+      const buffer = converters.get(['hex', 'buffer'])('10203')
       buffer.toJSON().data.should.deep.equal([1, 2, 3])
     })
   })
