@@ -2,6 +2,10 @@ const Nobject = require('nobject')
 const converters = new Nobject
 const arrayEquals = require('array-equal')
 
+function normalizeHex(hex) {
+  return hex.length % 2 === 0 ? hex : hex.slice(0, -1) + '0' + hex.slice(-1)
+}
+
 converters.set(['array', 'buffer'], (array) => {
   return Buffer.from(array)
 })
@@ -15,12 +19,11 @@ converters.set(['uint8Array', 'array'], (uint8Array) => {
 })
 
 converters.set(['buffer', 'hex'], (buffer) => {
-  return buffer.toString('hex')
+  return normalizeHex(buffer.toString('hex'))
 })
 
-converters.set(['hex', 'buffer'], (_hex) => {
-  const hex = _hex.length % 2 === 0 ? _hex : _hex.slice(0, -1) + '0' + _hex.slice(-1)
-  return Buffer.from(hex, 'hex')
+converters.set(['hex', 'buffer'], (hex) => {
+  return Buffer.from(normalizeHex(hex), 'hex')
 })
 
 converters.set(['buffer', 'ascii'], (buffer) => {

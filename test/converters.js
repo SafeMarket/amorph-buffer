@@ -45,6 +45,10 @@ describe('converters', () => {
       const hex = converters.get(['buffer', 'hex'])(buffer)
       hex.should.equal('010203')
     })
+    it('test 2', () => {
+      const hex = converters.get(['buffer', 'hex'])(new Buffer([0x11, 0x08]))
+      hex.should.equal('1108')
+    })
   })
 
   describe('hex-buffer', () => {
