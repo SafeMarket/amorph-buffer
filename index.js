@@ -63,6 +63,7 @@ module.exports = {
   converters: converters,
   equivalenceTests: {
     array: arrayEquals,
+    uint8Array: arrayEquals,
     buffer: (a, b) => {
       return Buffer.compare(a, b) === 0
     }
