@@ -40,6 +40,14 @@ describe('converters', () => {
     })
   })
 
+  describe('array-uint8Array', () => {
+    it('test 1', () => {
+      const uint8Array = converters.get(['array', 'uint8Array'])(array)
+      uint8Array.should.be.instanceOf(Uint8Array)
+      uint8Array.should.deep.equal(new Uint8Array([4, 5, 6]))
+    })
+  })
+
   describe('buffer-hex', () => {
     it('test 1', () => {
       const hex = converters.get(['buffer', 'hex'])(buffer)

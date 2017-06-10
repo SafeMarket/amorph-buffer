@@ -18,6 +18,10 @@ converters.set(['uint8Array', 'array'], (uint8Array) => {
   return Array.from(uint8Array)
 })
 
+converters.set(['array', 'uint8Array'], (array) => {
+  return new Uint8Array(array)
+})
+
 converters.set(['buffer', 'hex'], (buffer) => {
   return normalizeHex(buffer.toString('hex'))
 })
