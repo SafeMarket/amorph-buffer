@@ -10,6 +10,10 @@ converters.set(['array', 'buffer'], (array) => {
   return Buffer.from(array)
 })
 
+converters.set(['uint8Array', 'buffer'], (uint8Array) => {
+  return Buffer.from(uint8Array)
+})
+
 converters.set(['buffer', 'uint8Array'], (buffer) => {
   return new Uint8Array(buffer)
 })

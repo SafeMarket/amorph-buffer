@@ -23,6 +23,13 @@ describe('converters', () => {
       buffer.toJSON().data.should.deep.equal([4, 5, 6])
     })
   })
+  describe('uint8Array-buffer', () => {
+    it('test 1', () => {
+      const buffer = converters.get(['uint8Array', 'buffer'])(uint8Array)
+      buffer.should.be.instanceOf(Buffer)
+      buffer.toJSON().data.should.deep.equal([7, 8, 9])
+    })
+  })
 
   describe('buffer-uint8Array', () => {
     it('test 1', () => {
